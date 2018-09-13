@@ -1,0 +1,35 @@
+5D01	epx (2-3x)
+5D02	kuwahara (5x5, 7x7, 9x9, 11x11 window)
+5D03	xbrz (2-6x)
+5D04	hqnx (2-4x)
+5D05	lqnx (2-4x)
+5D06	xbr (2-4x)
+5D07	2xsai
+5D08	eagle (2-3x)
+5D09	supersai 2x
+5D0A	supereagle 2x
+5D0B	rgb (2-4x)
+5D0C	tv (2-4x)
+5D0D	advmameinterp (2-3x)
+5D0E	scale3x
+5D0F	magnify (generic pixel multiplier, 1-nx)
+5D10	amscale (2-3x)
+5D11	horiz (2-4x)
+5D12	vertscan (2-4x)
+5D13	reverseaa (2x)
+5D14	ultra2x
+5D15	super2x
+5D16	2xcl
+5D17	des2x
+5D18	des (original DES algorithm in FNES)
+5D19	bilinear (2x)
+5D1A	bilinear+ (2x)
+5D1B	bilinear++ (2x)
+5D1C	hq2xn (2x2, 2x3, 2x4 scaling)
+5D1D	lq2xn (2x2, 2x3, 2x4 scaling)
+5D1E	epx version b (2x)
+5D1F	epx version c (2x)
+5D20	eagle3x version b
+5D21	flip (horizontal, vertical)
+5D22	rotate (90, 180, 270)
+5D23	nearest (nearest-neighbor 2x)
