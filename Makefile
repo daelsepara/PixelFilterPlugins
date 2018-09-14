@@ -45,7 +45,7 @@ all: test PixelFilter \
 	sai supersai eagle supereagle \
 	rgb tv advmameinterp scale3x \
 	magnify amscale horiz vertscan \
-	reverseaa \
+	reverseaa tvzero \
 	ultra2x super2x 2xscl des2x des \
 	bilinear bilinearplus bilinearpp \
 	hq2xn lq2xn epxb epxc eagle3xb \
@@ -440,6 +440,17 @@ ifeq ($(UNAME), Darwin)
 else
 	clang++ $(LFLAGS_LIB),libpixel++nearest.so.$(MAJ_VERSION) -o libpixel++nearest.so.$(FUL_VERSION) nearest.o
 	ln -sf libpixel++nearest.so.$(FUL_VERSION) libpixel++nearest.so
+endif
+
+tvzero:
+	clang++ $(CFLAGS_BASE) tvzero.cpp
+	
+ifeq ($(UNAME), Darwin)
+	clang++ $(LFLAGS_LIB) libpixel++tvzero.$(FUL_VERSION).dylib tvzero.o
+	ln -sf libpixel++tvzero.$(FUL_VERSION).dylib libpixel++tvzero.dylib
+else
+	clang++ $(LFLAGS_LIB),libpixel++tvzero.so.$(MAJ_VERSION) -o libpixel++tvzero.so.$(FUL_VERSION) tvzero.o
+	ln -sf libpixel++tvzero.so.$(FUL_VERSION) libpixel++tvzero.so
 endif
 
 cleanup:
