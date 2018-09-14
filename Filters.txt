@@ -33,3 +33,4 @@
 5D21	flip (horizontal, vertical)
 5D22	rotate (90, 180, 270)
 5D23	nearest (nearest-neighbor 2x)
+5D24	tvzero (1x)
