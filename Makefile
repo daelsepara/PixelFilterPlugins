@@ -49,7 +49,7 @@ all: test PixelFilter \
 	ultra2x super2x 2xscl des2x des \
 	bilinear bilinearplus bilinearpp \
 	hq2xn lq2xn epxb epxc eagle3xb \
-	flip rotate nearest
+	flip rotate nearest gs
 	
 PixelFilter:
 	clang++ $(EXEC_FLAGS) PixelFilter.exe PixelFilter.cpp lodepng.cpp $(OPENCV_INCLUDES) $(OPENCV_LIBS)
@@ -451,6 +451,17 @@ ifeq ($(UNAME), Darwin)
 else
 	clang++ $(LFLAGS_LIB),libpixel++tvzero.so.$(MAJ_VERSION) -o libpixel++tvzero.so.$(FUL_VERSION) tvzero.o
 	ln -sf libpixel++tvzero.so.$(FUL_VERSION) libpixel++tvzero.so
+endif
+
+gs:
+	clang++ $(CFLAGS_BASE) gs.cpp
+	
+ifeq ($(UNAME), Darwin)
+	clang++ $(LFLAGS_LIB) libpixel++gs.$(FUL_VERSION).dylib gs.o -lfftw3
+	ln -sf libpixel++gs.$(FUL_VERSION).dylib libpixel++gs.dylib
+else
+	clang++ $(LFLAGS_LIB),libpixel++gs.so.$(MAJ_VERSION) -o libpixel++gs.so.$(FUL_VERSION) gs.o -lfftw3
+	ln -sf libpixel++gs.so.$(FUL_VERSION) libpixel++gs.so
 endif
 
 cleanup:

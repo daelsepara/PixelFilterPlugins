@@ -34,3 +34,4 @@
 5D22	rotate (90, 180, 270)
 5D23	nearest (nearest-neighbor 2x)
 5D24	tvzero (1x)
+5D25	Gerchberg-Saxton Phase Retrieval
