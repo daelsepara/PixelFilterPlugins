@@ -24,21 +24,6 @@ extern "C"
 	
 	#include "includes/Init.h"
 
-	double* Double(int Length, double val)
-	{
-		auto dbl = (double*)malloc(Length * sizeof(double));
-
-		if (dbl != NULL)
-		{
-			for (auto x = 0; x < Length; x++)
-			{
-				dbl[x] = val;
-			}
-		}
-
-		return dbl;
-	}
-
 	fftw_complex* Complex(int Length, double val)
 	{
 		auto dbl = (fftw_complex*)fftw_malloc(Length * sizeof(fftw_complex));
@@ -76,22 +61,6 @@ extern "C"
 		return cmplx;
 	}
 	
-	void Source(fftw_complex** source, int xdim, int ydim)
-	{
-		auto size = xdim * ydim;
-
-		*source = Complex(size, 0.0);
-
-		if (source)
-		{
-			// create source field		
-			for (auto index = 0; index < size; index++)
-			{
-				(*source)[index][Re] = 1.0;
-			}
-		}
-	}
-
 	void Shift(fftw_complex* complex, int sizex, int sizey)
 	{
 		fftw_complex temp;
@@ -181,28 +150,26 @@ extern "C"
 
 			// temporary complex arrays to hold intermediate results
 			auto result = Complex(size, 0.0);
-			auto source = Complex(size, 0.0);
+			auto source = Complex(size, 1.0);
 			auto d_temp = Complex(size, 0.0);
 			auto d_result = Complex(size, 0.0);
 			
-			Source(&source, srcx, srcy);
-
 			// 2D Forward plan
 			fwdplan = fftw_plan_dft_2d(srcy, srcx, d_temp, d_result, FFTW_FORWARD, FFTW_MEASURE);
 
 			// 2D Inverse plan
 			invplan = fftw_plan_dft_2d(srcy, srcx, d_temp, d_result, FFTW_BACKWARD, FFTW_MEASURE);
 
-			auto resized = Copy(Input, srcx, srcy);
+			auto target = Copy(Input, srcx, srcy);
 			
-			Shift(resized, srcx, srcy);
+			Shift(target, srcx, srcy);
 			
 			// ---------------------
 			// --    GS PHASE     --
 			// ---------------------
 
 			// Get initial estimate of the phase
-			fftw_execute_dft(invplan, resized, d_result);
+			fftw_execute_dft(invplan, target, d_result);
 
 			for (auto iter = 0; iter < Ngs; iter++)
 			{
@@ -213,7 +180,7 @@ extern "C"
 				fftw_execute_dft(fwdplan, d_temp, d_result);
 
 				// Apply target constraints
-				ComputePhaseAndMakeComplexField(d_result, resized, d_temp, size);
+				ComputePhaseAndMakeComplexField(d_result, target, d_temp, size);
 
 				// perform backward transform
 				fftw_execute_dft(invplan, d_temp, d_result);
@@ -241,7 +208,7 @@ extern "C"
 			fftw_cleanup();
 
 			// free memory
-			fftw_free(resized);
+			fftw_free(target);
 			fftw_free(d_result);
 			fftw_free(d_temp);
 			fftw_free(result);
