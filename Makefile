@@ -50,7 +50,17 @@ all: test PixelFilter \
 	bilinear bilinearplus bilinearpp \
 	hq2xn lq2xn epxb epxc eagle3xb \
 	flip rotate nearest gs
-	
+
+filters: epx kuwahara xbrz hqx lqx xbr \
+	sai supersai eagle supereagle \
+        rgb tv advmameinterp scale3x \
+        magnify amscale horiz vertscan \
+        reverseaa tvzero \
+        ultra2x super2x 2xscl des2x des \
+        bilinear bilinearplus bilinearpp \
+        hq2xn lq2xn epxb epxc eagle3xb \
+        flip rotate nearest
+
 PixelFilter:
 	clang++ $(EXEC_FLAGS) PixelFilter.exe PixelFilter.cpp lodepng.cpp $(OPENCV_INCLUDES) $(OPENCV_LIBS)
 	
