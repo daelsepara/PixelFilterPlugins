@@ -354,10 +354,10 @@ extern "C"
 	{
 		if (argc >= 4)
 		{
-			auto Input = ((unsigned char *)(argv[0]));
-			auto srcx = *((int *)(argv[1]));
-			auto srcy = *((int *)(argv[2]));
-			auto scale = *((int *)(argv[3]));
+			auto Input = ((unsigned char*)(argv[0]));
+			auto srcx = *((int*)(argv[1]));
+			auto srcy = *((int*)(argv[2]));
+			auto scale = *((int*)(argv[3]));
 
 			auto Channels = 3;
 
@@ -377,9 +377,9 @@ extern "C"
 				{
 					auto rgb = ScaleImage(Input, (double) x / _SizeX, positiony, srcx, srcy, _SizeX, _SizeY);
 
-					ScaledImage[(offset + x) *Channels] = Red(rgb);
-					ScaledImage[(offset + x) *Channels + 1] = Green(rgb);
-					ScaledImage[(offset + x) *Channels + 2] = Blue(rgb);
+					ScaledImage[(offset + x) * Channels] = Red(rgb);
+					ScaledImage[(offset + x) * Channels + 1] = Green(rgb);
+					ScaledImage[(offset + x) * Channels + 2] = Blue(rgb);
 				}
 			}
 		}
