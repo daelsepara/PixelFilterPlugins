@@ -35,3 +35,4 @@
 5D23	nearest (nearest-neighbor 2x)
 5D24	tvzero (1x)
 5D25	Gerchberg-Saxton Phase Retrieval
+5D26	Omniscale (1 - nx)
