@@ -15,7 +15,7 @@ extern "C"
 	const char* FilterName = "HQ 2Xn";
 	const char* FilterDescription = "Maxim Stepin's High Quality 2Xn Magnification";
 
-	bool ComparisonThreshold = false;
+	bool ComparisonThreshold = true;
 	const int FilterScaleX = 2;
 	int FilterScaleY = 2;
 

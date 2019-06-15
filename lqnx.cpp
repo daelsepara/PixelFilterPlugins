@@ -15,7 +15,7 @@ extern "C"
 	const char* FilterName = "LQnX";
 	const char* FilterDescription = "LQnX Family of Filters";
 
-	bool ComparisonThreshold = false;
+	bool ComparisonThreshold = true;
 	int FilterScaleX = 2;
 	int FilterScaleY = 2;
 

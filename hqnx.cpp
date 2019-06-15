@@ -15,7 +15,7 @@ extern "C"
 	const char* FilterName = "HQnX";
 	const char* FilterDescription = "Maxim Stepin's High Quality nX Magnification";
 
-	bool ComparisonThreshold = false;
+	bool ComparisonThreshold = true;
 	int FilterScaleX = 2;
 	int FilterScaleY = 2;
 

@@ -120,17 +120,17 @@ bool IsLike(int pixel1, int pixel2)
 
 	auto delta = Luminance(pixel1) - Luminance(pixel2);
 
-	if ((unsigned char)std::abs(delta) > _LUMINANCE_TRIGGER)
+	if (((unsigned char)std::abs(delta)) > _LUMINANCE_TRIGGER)
 		return false;
 
 	delta = ChromaV(pixel1) - ChromaV(pixel2);
 
-	if ((unsigned char)std::abs(delta) > _CHROMA_V_TRIGGER)
+	if (((unsigned char)std::abs(delta)) > _CHROMA_V_TRIGGER)
 		return false;
 
 	delta = ChromaU(pixel1) - ChromaU(pixel2);
 
-	return (unsigned char)std::abs(delta) <= _CHROMA_U_TRIGGER;
+	return ((unsigned char)std::abs(delta)) <= _CHROMA_U_TRIGGER;
 }
 
 bool IsNotLike(int pixel1, int pixel2)
