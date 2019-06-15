@@ -49,7 +49,7 @@ all: test PixelFilter \
 	ultra2x super2x 2xscl des2x des \
 	bilinear bilinearplus bilinearpp \
 	hq2xn lq2xn epxb epxc eagle3xb \
-	flip rotate nearest gs
+	flip rotate nearest gs omniscale
 
 filters: epx kuwahara xbrz hqx lqx xbr \
 	sai supersai eagle supereagle \
@@ -59,7 +59,7 @@ filters: epx kuwahara xbrz hqx lqx xbr \
         ultra2x super2x 2xscl des2x des \
         bilinear bilinearplus bilinearpp \
         hq2xn lq2xn epxb epxc eagle3xb \
-        flip rotate nearest
+        flip rotate nearest omniscale
 
 PixelFilter:
 	clang++ $(EXEC_FLAGS) PixelFilter.exe PixelFilter.cpp lodepng.cpp $(OPENCV_INCLUDES) $(OPENCV_LIBS)
@@ -472,6 +472,17 @@ ifeq ($(UNAME), Darwin)
 else
 	clang++ $(LFLAGS_LIB),libpixel++gs.so.$(MAJ_VERSION) -o libpixel++gs.so.$(FUL_VERSION) gs.o -lfftw3
 	ln -sf libpixel++gs.so.$(FUL_VERSION) libpixel++gs.so
+endif
+
+omniscale:
+	clang++ $(CFLAGS_BASE) omniscale.cpp
+	
+ifeq ($(UNAME), Darwin)
+	clang++ $(LFLAGS_LIB) libpixel++omniscale.$(FUL_VERSION).dylib omniscale.o
+	ln -sf libpixel++omniscale.$(FUL_VERSION).dylib libpixel++omniscale.dylib
+else
+	clang++ $(LFLAGS_LIB),libpixel++omniscale.so.$(MAJ_VERSION) -o libpixel++omniscale.so.$(FUL_VERSION) omniscale.o
+	ln -sf libpixel++omniscale.so.$(FUL_VERSION) libpixel++omniscale.so
 endif
 
 cleanup:
