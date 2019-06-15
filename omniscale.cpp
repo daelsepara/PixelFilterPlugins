@@ -69,7 +69,7 @@ extern "C"
         return RGBINT(r, g, b);
     }
     
-	double length(double a, double b) {
+    double length(double a, double b) {
 
 		return std::sqrt(a * a + b * b);
 	}
@@ -375,11 +375,11 @@ extern "C"
 			for (auto y = 0; y < _SizeY; y++) {
 
 				auto offset = y * _SizeX;
-				double positiony = ((double)y / _SizeY);
+				double positiony = (double)y / _SizeY;
 
 				for (auto x = 0; x < _SizeX; x++) {
 
-					auto rgb = ScaleImage(Input, ((double)x / _SizeX), positiony, srcx, srcy, _SizeX, _SizeY);
+					auto rgb = ScaleImage(Input, (double)x / _SizeX, positiony, srcx, srcy, _SizeX, _SizeY);
 					
 					ScaledImage[(offset + x) * Channels] = Red(rgb);
 					ScaledImage[(offset + x) * Channels + 1] = Green(rgb);
