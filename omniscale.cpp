@@ -7,7 +7,10 @@
 
 extern "C"
 {
-	static unsigned char *ScaledImage = NULL; const int FilterID = 0x5D26; const char *FilterName = "OmniScale"; const char *FilterDescription = "Lior Halphon's Omniscale (Modified: Uses Maxim Stepin's Color comparison routine)";
+	static unsigned char *ScaledImage = NULL;
+	const int FilterID = 0x5D26;
+	const char *FilterName = "OmniScale";
+	const char *FilterDescription = "Lior Halphon's Omniscale (Modified: Uses Maxim Stepin's Color comparison routine)";
 
 	bool ComparisonThreshold = true;
 	int FilterScaleX = 2;
@@ -41,7 +44,6 @@ extern "C"
 
 	bool P(int pattern, int m, int r)
 	{
-
 		return ((pattern &(m)) == (r));
 	}
 
@@ -56,7 +58,6 @@ extern "C"
 
 	int Add(int x, int y, double scale)
 	{
-
 		auto r = (Red(x) + Red(y)) *scale;
 		auto g = (Green(x) + Green(y)) *scale;
 		auto b = (Blue(x) + Blue(y)) *scale;
@@ -66,7 +67,6 @@ extern "C"
 
 	double length(double a, double b)
 	{
-
 		return std::sqrt(a *a + b *b);
 	}
 
@@ -80,14 +80,12 @@ extern "C"
 
 		if (px > 0.5)
 		{
-
 			ox = -ox;
 			px = 1.0 - px;
 		}
 
 		if (py > 0.5)
 		{
-
 			oy = -oy;
 			py = 1.0 - py;
 		}
@@ -144,31 +142,25 @@ extern "C"
 
 		if (P(pattern, 0x2f, 0x2f))
 		{
-
 			dist = length(px - 0.5, py - 0.5);
 			pixel_size = length(1.0 / (dstx / srcx), 1.0 / (dsty / srcy));
 
 			if (dist < 0.5 - pixel_size / 2)
 			{
-
 				return w4;
 			}
 
 			if (is_different(w0, w1) || is_different(w0, w3))
 			{
-
 				r = mix(w1, w3, py - px + 0.5);
-
 			}
 			else
 			{
-
 				r = mix(mix(Mul(w1, 0.375) + Mul(w0, 0.25) + Mul(w3, 0.375), w3, py * 2.0), w1, px * 2.0);
 			}
 
 			if (dist > 0.5 + pixel_size / 2)
 			{
-
 				return r;
 			}
 
@@ -177,13 +169,11 @@ extern "C"
 
 		if (P(pattern, 0xbf, 0x37) || P(pattern, 0xdb, 0x13))
 		{
-
 			dist = px - 2.0 *py;
 			pixel_size = length(1.0 / (dstx / srcx), 1.0 / (dsty / srcy)) *std::sqrt(5.0);
 
 			if (dist > pixel_size / 2)
 			{
-
 				return w1;
 			}
 
@@ -191,7 +181,6 @@ extern "C"
 
 			if (dist < -pixel_size / 2)
 			{
-
 				return r;
 			}
 
@@ -200,13 +189,11 @@ extern "C"
 
 		if (P(pattern, 0xdb, 0x49) || P(pattern, 0xef, 0x6d))
 		{
-
 			dist = py - 2.0 *px;
 			pixel_size = length(1.0 / (dstx / srcx), 1.0 / (dsty / srcy)) *std::sqrt(5.0);
 
 			if (py - 2.0 *px > pixel_size / 2)
 			{
-
 				return w3;
 			}
 
@@ -214,7 +201,6 @@ extern "C"
 
 			if (dist < -pixel_size / 2)
 			{
-
 				return r;
 			}
 
@@ -223,32 +209,26 @@ extern "C"
 
 		if (P(pattern, 0xbf, 0x8f) || P(pattern, 0x7e, 0x0e))
 		{
-
 			dist = px + 2.0 *py;
-
 			pixel_size = length(1.0 / (dstx / srcx), 1.0 / (dsty / srcy)) *std::sqrt(5.0);
 
 			if (dist > 1.0 + pixel_size / 2)
 			{
-
 				return w4;
 			}
 
 			if (is_different(w0, w1) || is_different(w0, w3))
 			{
-
 				r = mix(w1, w3, py - px + 0.5);
 
 			}
 			else
 			{
-
 				r = mix(mix(Mul(w1, 0.375) + Mul(w0, 0.25) + Mul(w3, 0.375), w3, py * 2.0), w1, px * 2.0);
 			}
 
 			if (dist < 1.0 - pixel_size / 2)
 			{
-
 				return r;
 			}
 
@@ -257,31 +237,25 @@ extern "C"
 
 		if (P(pattern, 0x7e, 0x2a) || P(pattern, 0xef, 0xab))
 		{
-
 			dist = py + 2.0 *px;
 			pixel_size = length(1.0 / (dstx / srcx), 1.0 / (dsty / srcy)) *std::sqrt(5.0);
 
 			if (py + 2.0 *px > 1.0 + pixel_size / 2)
 			{
-
 				return w4;
 			}
 
 			if (is_different(w0, w1) || is_different(w0, w3))
 			{
-
 				r = mix(w1, w3, py - px + 0.5);
-
 			}
 			else
 			{
-
 				r = mix(mix(Mul(w1, 0.375) + Mul(w0, 0.25) + Mul(w3, 0.375), w3, py * 2.0), w1, px * 2.0);
 			}
 
 			if (dist < 1.0 - pixel_size / 2)
 			{
-
 				return r;
 			}
 
@@ -299,31 +273,25 @@ extern "C"
 
 		if (P(pattern, 0x4f, 0x4b) || P(pattern, 0x9f, 0x1b) || P(pattern, 0x2f, 0x0b) || P(pattern, 0xbe, 0x0a) || P(pattern, 0xee, 0x0a) || P(pattern, 0x7e, 0x0a) || P(pattern, 0xeb, 0x4b) || P(pattern, 0x3b, 0x1b))
 		{
-
 			dist = px + py;
 			pixel_size = length(1.0 / (dstx / srcx), 1.0 / (dsty / srcy));
 
 			if (dist > 0.5 + pixel_size / 2)
 			{
-
 				return w4;
 			}
 
 			if (is_different(w0, w1) || is_different(w0, w3))
 			{
-
 				r = mix(w1, w3, py - px + 0.5);
-
 			}
 			else
 			{
-
 				r = mix(mix(Mul(w1, 0.375) + Mul(w0, 0.25) + Mul(w3, 0.375), w3, py * 2.0), w1, px * 2.0);
 			}
 
 			if (dist < 0.5 - pixel_size / 2)
 			{
-
 				return r;
 			}
 
@@ -363,19 +331,16 @@ extern "C"
 
 		while (pattern != 0)
 		{
-
 			diagonal_bias += pattern &1;
 			pattern >>= 1;
 		}
 
 		if (diagonal_bias <= 0)
 		{
-
 			r = mix(w1, w3, py - px + 0.5);
 
 			if (dist < 0.5 - pixel_size / 2)
 			{
-
 				return r;
 			}
 
@@ -389,7 +354,6 @@ extern "C"
 	{
 		if (argc >= 4)
 		{
-
 			auto Input = ((unsigned char *)(argv[0]));
 			auto srcx = *((int *)(argv[1]));
 			auto srcy = *((int *)(argv[2]));
