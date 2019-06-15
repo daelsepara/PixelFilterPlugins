@@ -354,15 +354,15 @@ extern "C"
         return w4;            
     }
     
-	void Apply(int argc, void** argv)
-	{
+    void Apply(int argc, void** argv)
+    {
 		if (argc >= 4)
 		{
 			auto Input = ((unsigned char*)(argv[0]));
 			auto srcx = *((int*)(argv[1]));
 			auto srcy = *((int*)(argv[2]));
 			auto scale = *((int*)(argv[3]));
-
+			
 			auto Channels = 3;
 			
 			scale = std::max(1, scale);
@@ -372,13 +372,13 @@ extern "C"
 			
 			Init(srcx, srcy);
 			
-			for (auto y = 0; y < _SizeY; y++) {
-
+			for (auto y = 0; y < _SizeY; y++)
+			{
 				auto offset = y * _SizeX;
 				double positiony = (double)y / _SizeY;
-
-				for (auto x = 0; x < _SizeX; x++) {
-
+				
+				for (auto x = 0; x < _SizeX; x++)
+				{
 					auto rgb = ScaleImage(Input, (double)x / _SizeX, positiony, srcx, srcy, _SizeX, _SizeY);
 					
 					ScaledImage[(offset + x) * Channels] = Red(rgb);
