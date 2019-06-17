@@ -49,7 +49,7 @@ all: test PixelFilter \
 	ultra2x super2x 2xscl des2x des \
 	bilinear bilinearplus bilinearpp \
 	hq2xn lq2xn epxb epxc eagle3xb \
-	flip rotate nearest gs omniscale
+	flip rotate nearest gs omniscale lanczos
 
 filters: epx kuwahara xbrz hqx lqx xbr \
 	sai supersai eagle supereagle \
@@ -59,7 +59,7 @@ filters: epx kuwahara xbrz hqx lqx xbr \
         ultra2x super2x 2xscl des2x des \
         bilinear bilinearplus bilinearpp \
         hq2xn lq2xn epxb epxc eagle3xb \
-        flip rotate nearest omniscale
+        flip rotate nearest omniscale lanczos
 
 PixelFilter:
 	clang++ $(EXEC_FLAGS) PixelFilter.exe PixelFilter.cpp lodepng.cpp $(OPENCV_INCLUDES) $(OPENCV_LIBS)
@@ -483,6 +483,17 @@ ifeq ($(UNAME), Darwin)
 else
 	clang++ $(LFLAGS_LIB),libpixel++omniscale.so.$(MAJ_VERSION) -o libpixel++omniscale.so.$(FUL_VERSION) omniscale.o
 	ln -sf libpixel++omniscale.so.$(FUL_VERSION) libpixel++omniscale.so
+endif
+
+lanczos:
+	clang++ $(CFLAGS_BASE) lanczos.cpp
+	
+ifeq ($(UNAME), Darwin)
+	clang++ $(LFLAGS_LIB) libpixel++lanczos.$(FUL_VERSION).dylib lanczos.o
+	ln -sf libpixel++lanczos.$(FUL_VERSION).dylib libpixel++lanczos.dylib
+else
+	clang++ $(LFLAGS_LIB),libpixel++lanczos.so.$(MAJ_VERSION) -o libpixel++lanczos.so.$(FUL_VERSION) lanczos.o
+	ln -sf libpixel++lanczos.so.$(FUL_VERSION) libpixel++lanczos.so
 endif
 
 cleanup:
