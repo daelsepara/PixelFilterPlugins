@@ -37,7 +37,7 @@ EXEC_FLAGS=-std=c++11 -rdynamic -ldl -Wc++11-extensions -o
 
 endif
 
-OPENCV_INCLUDES=-I/usr/local/include -I/usr/include -I/usr/include/opencv2 -I/usr/local/include/opencv-3.4.2/
+OPENCV_INCLUDES=-I/usr/local/include -I/usr/include -I/usr/include/opencv2 -I/usr/local/include/opencv-3.4.2/ -I/usr/local/include/opencv4/
 OPENCV_LIBS=-L/usr/local/lib -L/usr/lib -lopencv_core -lopencv_highgui -lopencv_imgcodecs
 
 all: test PixelFilter \
