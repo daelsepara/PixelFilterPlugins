@@ -36,4 +36,4 @@
 5D24	tvzero (1x)
 5D25	Gerchberg-Saxton Phase Retrieval
 5D26	Omniscale (1 - nx)
-5D26	Lanczos Resampling (1 - nx)
+5D27	Lanczos Resampling (1 - nx)

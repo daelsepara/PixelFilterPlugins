@@ -5525,6 +5525,7 @@ void Lq3xKernel(byte pattern, sPixel c0, sPixel c1, sPixel c2, sPixel c3, sPixel
 	Pixel[9] = (e22);
 }
 //endregion
+
 //region standard LQ4x casepath
 void Lq4xKernel(byte pattern, sPixel c0, sPixel c1, sPixel c2, sPixel c3, sPixel c4, sPixel c5, sPixel c6, sPixel c7, sPixel c8, int* Pixel) {
 	sPixel e01, e02, e03, e10, e11, e12, e13, e20, e21, e22, e23, e30, e31, e32, e33;

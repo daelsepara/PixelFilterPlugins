@@ -8,7 +8,7 @@
 extern "C"
 {
 	static unsigned char *ScaledImage = NULL;
-	const int FilterID = 0x5D26;
+	const int FilterID = 0x5D27;
 	const char *FilterName = "Lanczos Resampling Filter";
 	const char *FilterDescription = "Lanczos (window size = 3) resampling filter";
 
